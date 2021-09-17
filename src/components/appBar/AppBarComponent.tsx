@@ -11,10 +11,11 @@ import styles from './styles';
 import locale from '../../shared/locale';
 import logo from '../../shared/images/logo.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { State, SelectedFilterData } from '../../interfaces/appInterfaces';
+import {State, SelectedFilterData} from '../../interfaces/appInterfaces';
 import { getPersonByNameListData, getListDataFromFilter, removeClearFilters } from '../../actions/filterActions';
 import { Button } from '@material-ui/core';
 import { PersonEnum } from '../../shared/enums';
+import {useFetchGetPersonByNameMutation} from "../../services/app.query";
 
 const AppBarComponent: FC<any> = ({children}) => {
   const dispatch = useDispatch();
@@ -24,11 +25,14 @@ const AppBarComponent: FC<any> = ({children}) => {
   const classes = styles();
   const [isOpen, setIsOpen] = useState(false);
 
+  const {mutateAsync} = useFetchGetPersonByNameMutation();
+
   const toggleDrawer = (anchor: any, open: boolean) => () => {
     setIsOpen(open);
   };
 
   const onChange = (data: any) => {
+    mutateAsync(data.target.value);
     dispatch(getPersonByNameListData(data.target.value, globalData));
   }
 

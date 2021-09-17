@@ -9,11 +9,12 @@ export const getProfessions = (brastlewarkData: Brastlewark[]): ListInfoData => 
   return {listData: professions.map((name) => ({name}))};
 };
 
-export const getPersonsListByName = (data: any): ListInfoData => {
+export const getPersonsListByName = (data: any): Brastlewark[] => {
   const {name, globalData} = data;
-  return globalData
-    .filter((person: Brastlewark) => person.name.toUpperCase().includes(name.toUpperCase()))
-    .map(({id, name, thumbnail}: Brastlewark) => ({id, name, thumbnail}));
+  const xxx = globalData
+    .filter((person: Brastlewark) => person.name.toUpperCase().includes(name.toUpperCase()));
+  debugger;
+  return xxx;
 }
 
 export const getPersonsList = (brastlewarkData: Brastlewark[]): ListInfoData => {
@@ -23,8 +24,8 @@ export const getPersonsList = (brastlewarkData: Brastlewark[]): ListInfoData => 
   return {listData};
 }
 
-export const getPersonData = (id: number, brastlewarkData: Brastlewark[]): Brastlewark => {
-  return brastlewarkData.find(person => person.id === id) as Brastlewark;
+export const getPersonData = (personId: number, response: Brastlewark[]): any => {
+  return response.find((brastlewark: Brastlewark) => brastlewark.id === personId) as Brastlewark;
 }
 
 export const getFriendsList = (friendsList: string[], brastlewarkData: Brastlewark[]): FriendsData[] => {

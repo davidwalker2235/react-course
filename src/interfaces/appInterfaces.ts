@@ -92,7 +92,6 @@ export interface ListRows {
   panelId: number;
   panelExpanded: string | boolean; 
   handleChange: (personId: number, panelId: string | boolean) => void;
-  onClickFriend: (personId: number | undefined) => void;
 }
 
 export interface FriendsData {
@@ -107,7 +106,7 @@ export interface PersonProps {
 }
 
 export interface PersonInfoProps {
-  onClickFriend?: (personId: number | undefined) => void;
+  panelId: number;
 }
 
 // Filter

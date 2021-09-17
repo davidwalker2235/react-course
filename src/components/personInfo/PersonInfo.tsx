@@ -1,5 +1,5 @@
-import React, { FC, useEffect } from 'react';
-import { State, BrastlewarkProp, FriendsData, PersonInfoProps } from '../../interfaces/appInterfaces';
+import React, {FC, useEffect, useState} from 'react';
+import {State, FriendsData, PersonInfoProps, Brastlewark} from '../../interfaces/appInterfaces';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -8,24 +8,30 @@ import Grid from '@material-ui/core/Grid';
 import styles from './styles';
 import locale from '../../shared/locale';
 import Avatar from '@material-ui/core/Avatar';
-import { useSelector, useDispatch } from 'react-redux';
-import { getFriendsListData } from '../../actions/listActions';
+import {useDispatch, useSelector} from 'react-redux';
 import { PersonEnum } from '../../shared/enums';
+import {useFetchGetPersonDataMutation} from "../../services/app.query";
+import {getFriendsList} from "../../shared/utils";
+import {showModal} from "../../actions/modalActions";
 
-const PersonInfo: FC<PersonInfoProps> = ({onClickFriend}) => {
-  const classes = styles();
+const PersonInfo: FC<PersonInfoProps> = ({panelId}) => {
   const dispatch = useDispatch();
+  const classes = styles();
   const globalData = useSelector((state: State) => state.home.globalData);
-  const friendsListData = useSelector((state: State) => state.list.friendsListData);
-  const personData: BrastlewarkProp = useSelector((state: State) => state.person.personData);
-  const friendData: BrastlewarkProp = useSelector((state: State) => state.person.friendData);
+  const [data, setData] = useState<Brastlewark>();
+  const [friendsListData, setFriendsListData] = useState<FriendsData[]>([]);
+
+  const {mutateAsync} = useFetchGetPersonDataMutation({onSuccess: (person: Brastlewark) => {
+      setData(person as Brastlewark);
+      setFriendsListData(getFriendsList(person.friends, globalData));
+    }});
 
   useEffect(() => {
-    onClickFriend && dispatch(getFriendsListData(personData?.friends || [], globalData));
+    mutateAsync(panelId);
   },[]);
 
-  const getProfessions = (data: BrastlewarkProp) => (
-    data.professions?.length ? data.professions?.map((profession: string) => (
+  const getProfessions = (data: Brastlewark) => (
+    data?.professions?.length ? data.professions?.map((profession: string) => (
       <Typography variant="subtitle1" color="textSecondary">
         {profession}
       </Typography>
@@ -36,13 +42,14 @@ const PersonInfo: FC<PersonInfoProps> = ({onClickFriend}) => {
   );
 
   const getPersonInfo = (infoType: PersonEnum) => {
-    if (onClickFriend) return personData[infoType];
-    return friendData[infoType];
+    if (data) return data[infoType];
 
   }
 
   const handleClickFriend = (friendId: number) => {
-    onClickFriend && onClickFriend(friendId)
+    dispatch(showModal(
+      <PersonInfo panelId={friendId}/>
+    ));
   }
 
   const getFriends = () => (
@@ -97,12 +104,12 @@ const PersonInfo: FC<PersonInfoProps> = ({onClickFriend}) => {
                     <Typography style={{textDecoration: 'underline'}} variant="subtitle1" color="textSecondary">
                       {`${locale.Professions}:`}
                     </Typography>
-                    {getProfessions(onClickFriend ? personData : friendData)}
+                    {getProfessions(data as Brastlewark)}
                   </CardContent>
                 </Grid>
               </Grid>
             </Grid>
-            {onClickFriend && <CardContent className={classes.content}>
+            {<CardContent className={classes.content}>
               <div className={classes.friendsThubnails}>
                 <Typography component="h5" variant="h5">
                   {`${locale.Friends}: `}

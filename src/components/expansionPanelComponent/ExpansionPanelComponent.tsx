@@ -12,8 +12,7 @@ import {PersonInfo} from '../';
 const ExpansionPanelComponent: FC<ListRows> = ({data,
                                                 panelId,
                                                 panelExpanded,
-                                                handleChange,
-                                                onClickFriend}) => {
+                                                handleChange}) => {
   const classes = styles();
   const [panelNumber, setPanelNumber] = useState('')
 
@@ -38,7 +37,7 @@ const ExpansionPanelComponent: FC<ListRows> = ({data,
       </div>
     </ExpansionPanelSummary>
     <ExpansionPanelDetails className={classes.detailsRoot}>
-      {panelExpanded === panelNumber && <PersonInfo onClickFriend={onClickFriend}/>}
+      {panelExpanded === panelNumber && <PersonInfo panelId={panelId} />}
     </ExpansionPanelDetails>
   </ExpansionPanel>
 );

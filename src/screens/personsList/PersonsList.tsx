@@ -1,19 +1,20 @@
 import React, { FC, useState, useEffect } from 'react';
-import {useDispatch, useSelector, connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { ListProps, Brastlewark } from '../../interfaces/appInterfaces';
 import Container from '@material-ui/core/Container';
-import {AppBarComponent, PersonInfo} from '../../components';
+import {AppBarComponent} from '../../components';
 import {State} from '../../interfaces/appInterfaces';
 import styles from './styles';
-import { getGlobalData } from '../../actions/homeActions';
+import { setGlobalData } from '../../actions/homeActions';
 import {ExpansionPanelComponent} from '../../components';
 import backgroundFog from '../../shared/images/backgroundFog.jpg';
-import { getPersonData, getFriendData } from '../../actions/personActions';
+import { getPersonData } from '../../actions/personActions';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { showModal } from '../../actions/modalActions';
 import Typography from '@material-ui/core/Typography';
+import {useFetchGetGlobalDataQuery} from "../../services/app.query";
+import {hideLoading} from "../../actions/loadingActions";
 
-const PersonsList: FC<ListProps> = ({personListData}) => {
+const PersonsList: FC<ListProps> = () => {
   const classes = styles();
   const dispatch = useDispatch();
   const globalData = useSelector((state: State) => state.home.globalData);
@@ -22,11 +23,14 @@ const PersonsList: FC<ListProps> = ({personListData}) => {
   let listIndex: number = 20;
 
   useEffect(() => {
-    if (!globalData?.length) {
-      dispatch(getGlobalData());
-    }
-    setListData(personListData.slice(0, listIndex))
-  },[personListData]);
+    setListData(globalData.slice(0, listIndex))
+  }, [globalData])
+
+  useFetchGetGlobalDataQuery({onSuccess: (response) => {
+      dispatch(hideLoading());
+      dispatch(setGlobalData(response));
+      setListData(response.slice(0, listIndex))
+    }})
 
   const handleChange = (personId: number, panelId: string | boolean) => {
     dispatch(getPersonData(personId, globalData));
@@ -35,17 +39,10 @@ const PersonsList: FC<ListProps> = ({personListData}) => {
 
   const fetchMoreData = () => {
     let newListData: Brastlewark[] = listData;
-    newListData = newListData.concat(personListData.slice(listIndex, listIndex + 20));
+    newListData = newListData.concat(globalData.slice(listIndex, listIndex + 20));
     listIndex = listIndex + 20;
     setListData(newListData);
   };
-
-  const onClickFriend = (friendId: number | undefined) => {
-    dispatch(getFriendData(friendId, globalData));
-    dispatch(showModal(
-      <PersonInfo />
-    ));
-  }
 
   return (
     <div>
@@ -65,7 +62,6 @@ const PersonsList: FC<ListProps> = ({personListData}) => {
                 panelId={index}
                 panelExpanded={expandedPanel}
                 handleChange={handleChange}
-                onClickFriend={onClickFriend}
               />
             ))}
             </InfiniteScroll> :
@@ -79,8 +75,4 @@ const PersonsList: FC<ListProps> = ({personListData}) => {
 	)
 }
 
-const mapStateToProps = (state: State) => ({
-  personListData: state.list.personListData
-})
-
-export default connect(mapStateToProps, null)(PersonsList);
+export default PersonsList;
