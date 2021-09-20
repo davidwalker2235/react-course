@@ -37,7 +37,7 @@ const ExpansionPanelComponent: FC<ListRows> = ({data,
       </div>
     </ExpansionPanelSummary>
     <ExpansionPanelDetails className={classes.detailsRoot}>
-      {panelExpanded === panelNumber && <PersonInfo panelId={panelId} />}
+      {panelExpanded === panelNumber && <PersonInfo panelId={data.id} />}
     </ExpansionPanelDetails>
   </ExpansionPanel>
 );

@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc7f0d71-41c6-4b07-b03c-dd06ab6a35b5" name="Changes" comment="first upload">
-      <change afterPath="$PROJECT_DIR$/src/constants/urls.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/react-query.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/app.query.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/app.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/queries.ts" afterDir="false" />
+    <list default="true" id="bc7f0d71-41c6-4b07-b03c-dd06ab6a35b5" name="Changes" comment="add react query">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/filterActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/filterActions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/appBar/AppBarComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/appBar/AppBarComponent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/expansionPanelComponent/ExpansionPanelComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/expansionPanelComponent/ExpansionPanelComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/filterComponent/FilterComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filterComponent/FilterComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/personInfo/PersonInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/personInfo/PersonInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/filterReducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/filterReducers.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/personsList/PersonsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/personsList/PersonsList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/locale.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/locale.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/app.query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/app.query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/queries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/queries.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/utils.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +40,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/OneDrive - ERNI Group/Desktop/loccms" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -63,8 +62,17 @@
       <option name="presentableId" value="Default" />
       <updated>1631783474221</updated>
       <workItem from="1631783477013" duration="6437000" />
-      <workItem from="1631858445693" duration="10089000" />
+      <workItem from="1631858445693" duration="16696000" />
+      <workItem from="1632130211763" duration="8021000" />
     </task>
+    <task id="LOCAL-00001" summary="add react query">
+      <created>1631885986579</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1631885986579</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -81,5 +89,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add react query" />
+    <option name="LAST_COMMIT_MESSAGE" value="add react query" />
   </component>
 </project>

@@ -16,8 +16,14 @@ import FormControl from '@material-ui/core/FormControl';
 import locale from '../../shared/locale';
 import { useSelector, useDispatch } from 'react-redux';
 import { State, FilterData, Brastlewark, SelectedFilterData, FilterRanges, MultiSelectValues, FilterState } from '../../interfaces/appInterfaces';
-import { getFilterData, getListDataFromFilter, setFilterDataFromFilter, removeClearFilters } from '../../actions/filterActions';
+import {
+  getListDataFromFilter,
+  setFilterDataFromFilter,
+  removeClearFilters,
+  setFilterData
+} from '../../actions/filterActions';
 import { PersonEnum } from '../../shared/enums';
+import {getFilterData} from "../../shared/utils";
 
 interface MultiselectData {
   [key: string]: string[];
@@ -51,7 +57,9 @@ const FilterComponent: FC<{}> = () => {
   const ITEM_PADDING_TOP = 8;
 
   useEffect(() => {
-    !filterData && dispatch(getFilterData(globalData));
+    const filterInfo: FilterData = getFilterData(globalData);
+    !filterData && dispatch(setFilterData(filterInfo));
+    // !filterData && dispatch(getFilterData(globalData));
     if (!mounted && filterData &&
        !statePersonName.length &&
        !stateSlidersData[PersonEnum.AGE].length &&
@@ -65,7 +73,7 @@ const FilterComponent: FC<{}> = () => {
         setStatePersonName(personName);
         setMounted(true);
       }
-    }
+    }, [globalData, filterData, sliderData, multiSelectValue]
   );
 
   const MenuProps = {

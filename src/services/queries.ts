@@ -1,6 +1,7 @@
 const Queries = {
   GetGlobalData: 'getGlobalData',
-  GetPersonData: 'getPersonData'
+  GetPersonData: 'getPersonData',
+  GetFilterData: 'getFilterData',
 }
 
 export {

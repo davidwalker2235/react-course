@@ -1,4 +1,4 @@
-import {SET_FILTER_DATA, SET_FILTER_DATA_FROM_FILTER, REMOVE_CLEAR_FILTERS_BUTTON} from '../constants/constants';
+import {SET_FILTER_DATA, SET_FILTER_DATA_FROM_FILTER, REMOVE_CLEAR_FILTERS_BUTTON, SHOW_CLEAR_FILTERS_BUTTON} from '../constants/constants';
 import { Actions, FilterState, FilterRanges } from '../interfaces/appInterfaces';
 import { PersonEnum } from '../shared/enums';
 
@@ -49,9 +49,13 @@ export default function filterReducer(state: FilterState = initialState, action:
                slidersData: action.value.slidersData,
                multiSelectValue: action.value.multiSelectValue,
                isFiltered: true };
-    case REMOVE_CLEAR_FILTERS_BUTTON:
+    case SHOW_CLEAR_FILTERS_BUTTON:
       return { ...state,
-               isFiltered: false };
+        isFiltered: true };
+    case REMOVE_CLEAR_FILTERS_BUTTON:
+      debugger;
+      return { ...state,
+               ...initialState};
     default:
       return state;
   }

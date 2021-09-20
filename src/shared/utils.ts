@@ -11,10 +11,8 @@ export const getProfessions = (brastlewarkData: Brastlewark[]): ListInfoData => 
 
 export const getPersonsListByName = (data: any): Brastlewark[] => {
   const {name, globalData} = data;
-  const xxx = globalData
+  return globalData
     .filter((person: Brastlewark) => person.name.toUpperCase().includes(name.toUpperCase()));
-  debugger;
-  return xxx;
 }
 
 export const getPersonsList = (brastlewarkData: Brastlewark[]): ListInfoData => {

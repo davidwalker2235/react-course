@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { ListProps, Brastlewark } from '../../interfaces/appInterfaces';
+import {ListProps, Brastlewark, FilterData} from '../../interfaces/appInterfaces';
 import Container from '@material-ui/core/Container';
 import {AppBarComponent} from '../../components';
 import {State} from '../../interfaces/appInterfaces';
@@ -13,6 +13,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Typography from '@material-ui/core/Typography';
 import {useFetchGetGlobalDataQuery} from "../../services/app.query";
 import {hideLoading} from "../../actions/loadingActions";
+import {getFilterData} from "../../shared/utils";
+import {setFilterData} from "../../actions/filterActions";
 
 const PersonsList: FC<ListProps> = () => {
   const classes = styles();
@@ -24,6 +26,8 @@ const PersonsList: FC<ListProps> = () => {
 
   useEffect(() => {
     setListData(globalData.slice(0, listIndex))
+    const filterInfo: FilterData = getFilterData(globalData);
+    dispatch(setFilterData(filterInfo));
   }, [globalData])
 
   useFetchGetGlobalDataQuery({onSuccess: (response) => {

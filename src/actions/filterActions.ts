@@ -1,10 +1,12 @@
-import { GET_PERSONS_BY_NAME_DATA,
-         GET_FILTER_DATA,
-         SET_FILTER_DATA,
-         GET_LIST_DATA_FROM_FILTER,
-         SET_LIST_DATA_FROM_FILTER,
-         SET_FILTER_DATA_FROM_FILTER,
-         REMOVE_CLEAR_FILTERS_BUTTON } from '../constants/constants';
+import {
+  GET_PERSONS_BY_NAME_DATA,
+  GET_FILTER_DATA,
+  SET_FILTER_DATA,
+  GET_LIST_DATA_FROM_FILTER,
+  SET_LIST_DATA_FROM_FILTER,
+  SET_FILTER_DATA_FROM_FILTER,
+  REMOVE_CLEAR_FILTERS_BUTTON, SHOW_CLEAR_FILTERS_BUTTON
+} from '../constants/constants';
 import { Actions, FilterData, FilterState } from '../interfaces/appInterfaces';
 import { Brastlewark } from '../interfaces/appInterfaces';
 
@@ -25,6 +27,9 @@ export const getListDataFromFilter = (filterData: any, globalData: Brastlewark[]
 
 export const setListDataFromFilter = (data: FilterData): Actions => (
   {type: SET_LIST_DATA_FROM_FILTER, value: data});
+
+export const showClearFilters = (): Actions => (
+  {type: SHOW_CLEAR_FILTERS_BUTTON});
 
 export const removeClearFilters = (): Actions => (
   {type: REMOVE_CLEAR_FILTERS_BUTTON});

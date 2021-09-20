@@ -7,6 +7,7 @@ import locale from "../shared/locale";
 import {hideLoading, showLoading} from "../actions/loadingActions";
 import {getPersonData, getPersonsListByName} from "../shared/utils";
 import {setGlobalData} from "../actions/homeActions";
+import {removeClearFilters, showClearFilters} from "../actions/filterActions";
 
 const appService = new AppService();
 
@@ -57,6 +58,11 @@ export const useFetchGetPersonByNameMutation = () => {
       onSuccess: (response = []) => {
         dispatch(hideLoading());
         dispatch(setGlobalData(getPersonsListByName({name: personName, globalData: response})));
+        if(personName) {
+          dispatch(showClearFilters())
+        } else {
+          dispatch(removeClearFilters())
+        }
       },
       onError: ({errorMessage = locale.ErrorDefault}) => alert(errorMessage),
     }
