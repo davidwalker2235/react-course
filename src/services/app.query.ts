@@ -5,9 +5,10 @@ import AppService from "./app.service";
 import {Urls} from "../constants/urls";
 import locale from "../shared/locale";
 import {hideLoading, showLoading} from "../actions/loadingActions";
-import {getPersonData, getPersonsListByName} from "../shared/utils";
+import {getListDataFromFilter, getPersonData, getPersonsListByName} from "../shared/utils";
 import {setGlobalData} from "../actions/homeActions";
 import {removeClearFilters, showClearFilters} from "../actions/filterActions";
+import {SelectedFilterData} from "../interfaces/appInterfaces";
 
 const appService = new AppService();
 
@@ -21,7 +22,30 @@ export function useFetchGetGlobalDataQuery({onSuccess}: {onSuccess: (response: a
     },
     {
       onSuccess,
-      onError: ({errorMessage = locale.ErrorDefault}) => alert(errorMessage),
+      onError: ({errorMessage = locale.ErrorDefault}) => {
+        dispatch(hideLoading());
+        alert(errorMessage)
+      },
+    }
+  );
+}
+
+export const useFetchGetAllListMutation = () => {
+  const dispatch = useDispatch();
+  return useMutation(
+    () => {
+      dispatch(showLoading());
+      return appService.getGlobalData({url: Urls.GlobalData});
+    },
+    {
+      onSuccess: (response = []) => {
+        dispatch(hideLoading());
+        dispatch(setGlobalData(response));
+      },
+      onError: ({errorMessage = locale.ErrorDefault}) => {
+        dispatch(hideLoading());
+        alert(errorMessage)
+      },
     }
   );
 }
@@ -40,7 +64,10 @@ export function useFetchGetPersonDataMutation({onSuccess}: {onSuccess: (response
         dispatch(hideLoading());
         onSuccess(getPersonData(personId, response))
       },
-      onError: ({errorMessage = locale.ErrorDefault}) => alert(errorMessage),
+      onError: ({errorMessage = locale.ErrorDefault}) => {
+        dispatch(hideLoading());
+        alert(errorMessage)
+      },
     }
   );
 }
@@ -64,7 +91,33 @@ export const useFetchGetPersonByNameMutation = () => {
           dispatch(removeClearFilters())
         }
       },
-      onError: ({errorMessage = locale.ErrorDefault}) => alert(errorMessage),
+      onError: ({errorMessage = locale.ErrorDefault}) => {
+        dispatch(hideLoading());
+        alert(errorMessage);
+      },
+    }
+  );
+}
+
+export const useFetchGetFilteredListMutation = () => {
+  const dispatch = useDispatch();
+  let filters: SelectedFilterData;
+  return useMutation(
+    (data: SelectedFilterData) => {
+      dispatch(showLoading());
+      filters = data;
+      return appService.getGlobalData({url: Urls.GlobalData});
+    },
+    {
+      onSuccess: (response = []) => {
+        dispatch(hideLoading());
+        const filteredList = getListDataFromFilter(filters, response);
+        dispatch(setGlobalData(filteredList));
+      },
+      onError: ({errorMessage = locale.ErrorDefault}) => {
+        dispatch(hideLoading());
+        alert(errorMessage)
+      },
     }
   );
 }

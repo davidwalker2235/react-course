@@ -6,7 +6,6 @@ import RootNavigator from './router/rootRouter';
 import configureStore, { history } from './store/store';
 import {Loading, Modal} from './components';
 import {queryClient} from './react-query.config';
-import './App.css';
 
 const App: FC<{}> = () => {
   const store = configureStore()

@@ -1,29 +1,17 @@
 import React, { FC, useState, useEffect } from 'react';
 import styles from './styles';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import Checkbox from '@material-ui/core/Checkbox';
-import ListItemText from '@material-ui/core/ListItemText';
-import Select from '@material-ui/core/Select';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
+import {
+  List, Divider, ListItem, Checkbox, ListItemText, Select, TextField, Typography, Slider, Input, InputLabel,
+  MenuItem, FormControl
+} from '@material-ui/core';
 import locale from '../../shared/locale';
 import { useSelector, useDispatch } from 'react-redux';
-import { State, FilterData, Brastlewark, SelectedFilterData, FilterRanges, MultiSelectValues, FilterState } from '../../interfaces/appInterfaces';
 import {
-  getListDataFromFilter,
-  setFilterDataFromFilter,
-  removeClearFilters,
-  setFilterData
-} from '../../actions/filterActions';
+  State, FilterData, SelectedFilterData,
+  FilterRanges, MultiSelectValues, FilterState} from '../../interfaces/appInterfaces';
+import {setFilterDataFromFilter, removeClearFilters} from '../../actions/filterActions';
 import { PersonEnum } from '../../shared/enums';
-import {getFilterData} from "../../shared/utils";
+import {useFetchGetAllListMutation, useFetchGetFilteredListMutation} from "../../services/app.query";
 
 interface MultiselectData {
   [key: string]: string[];
@@ -42,9 +30,7 @@ const emptyMultiSelectValue: MultiselectData = {
 
 const FilterComponent: FC<{}> = () => {
   const dispatch = useDispatch();
-  const [mounted, setMounted] = useState<boolean>(false); 
   const filterData: FilterData | undefined = useSelector((state: State) => state.filter.filterData);
-  const globalData: Brastlewark[] = useSelector((state: State) => state.home.globalData);
   const sliderData: FilterRanges = useSelector((state: State) => state.filter.slidersData);
   const multiSelectValue: MultiSelectValues = useSelector((state: State) => state.filter.multiSelectValue);
   const personName: string = useSelector((state: State) => state.filter.personName);
@@ -57,24 +43,14 @@ const FilterComponent: FC<{}> = () => {
   const ITEM_PADDING_TOP = 8;
 
   useEffect(() => {
-    const filterInfo: FilterData = getFilterData(globalData);
-    !filterData && dispatch(setFilterData(filterInfo));
-    // !filterData && dispatch(getFilterData(globalData));
-    if (!mounted && filterData &&
-       !statePersonName.length &&
-       !stateSlidersData[PersonEnum.AGE].length &&
-       !stateSlidersData[PersonEnum.WEIGHT].length &&
-       !stateSlidersData[PersonEnum.HEIGHT].length &&
-       !stateMultiSelectValue[PersonEnum.HAIR_COLOR].length &&
-       !stateMultiSelectValue[PersonEnum.PROFESSION].length)
-      {
-        setStateSlidersData(sliderData);
-        setStateMultiSelectValue(multiSelectValue);
-        setStatePersonName(personName);
-        setMounted(true);
-      }
-    }, [globalData, filterData, sliderData, multiSelectValue]
+    setStateSlidersData(sliderData);
+    setStateMultiSelectValue(multiSelectValue);
+    setStatePersonName(personName);
+    }, [sliderData, multiSelectValue, personName]
   );
+  const {mutateAsync: onFilter} = useFetchGetFilteredListMutation();
+  const {mutateAsync: getAllData} = useFetchGetAllListMutation();
+
 
   const MenuProps = {
     PaperProps: {
@@ -145,29 +121,16 @@ const FilterComponent: FC<{}> = () => {
         multiSelectValue: stateMultiSelectValue
       } as FilterState
     ));
-    dispatch(getListDataFromFilter({
+    onFilter({
       [PersonEnum.NAME]: statePersonName,
       [PersonEnum.HAIR_COLOR]: stateMultiSelectValue[PersonEnum.HAIR_COLOR],
       [PersonEnum.PROFESSION]: stateMultiSelectValue[PersonEnum.PROFESSION],
       ranges: stateSlidersData
-    } as SelectedFilterData, globalData));
+    } as SelectedFilterData);
   }
 
   const onClickClearFilter = () => {
-    const resetSlidersData = {
-      [PersonEnum.AGE]: [filterData?.ranges.ageMinValue || 0, filterData?.ranges.ageMaxValue || 100],
-      [PersonEnum.WEIGHT]: [filterData?.ranges.weightMinValue || 0, filterData?.ranges.weightMaxValue || 100],
-      [PersonEnum.HEIGHT]: [filterData?.ranges.heightMinValue || 0, filterData?.ranges.heightMaxValue || 100]
-    }
-    setStatePersonName('');
-    setStateSlidersData(resetSlidersData);
-    setStateMultiSelectValue(emptyMultiSelectValue);
-    dispatch(getListDataFromFilter({
-      [PersonEnum.NAME]: '',
-      [PersonEnum.HAIR_COLOR]: [],
-      [PersonEnum.PROFESSION]: [],
-      ranges: resetSlidersData
-    } as SelectedFilterData, globalData));
+    getAllData();
     dispatch(removeClearFilters());
   }
 

@@ -53,7 +53,6 @@ export default function filterReducer(state: FilterState = initialState, action:
       return { ...state,
         isFiltered: true };
     case REMOVE_CLEAR_FILTERS_BUTTON:
-      debugger;
       return { ...state,
                ...initialState};
     default:

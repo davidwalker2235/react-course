@@ -1,25 +1,10 @@
-import { ListData, ListInfoData, Brastlewark, FriendsData, FilterData, Actions } from "../interfaces/appInterfaces";
+import { Brastlewark, FriendsData, FilterData } from "../interfaces/appInterfaces";
 
-export const getProfessions = (brastlewarkData: Brastlewark[]): ListInfoData => {
-  let professions: string[] = [];
-  brastlewarkData && brastlewarkData.forEach((person: Brastlewark)=>{
-    professions = Array.from(new Set(professions.concat(...person?.professions || [])));
-  });
-
-  return {listData: professions.map((name) => ({name}))};
-};
 
 export const getPersonsListByName = (data: any): Brastlewark[] => {
   const {name, globalData} = data;
   return globalData
     .filter((person: Brastlewark) => person.name.toUpperCase().includes(name.toUpperCase()));
-}
-
-export const getPersonsList = (brastlewarkData: Brastlewark[]): ListInfoData => {
-  let listData: ListData[];
-  listData = brastlewarkData && brastlewarkData.map(({id, name, thumbnail}) => ({id, name, thumbnail}));
-
-  return {listData};
 }
 
 export const getPersonData = (personId: number, response: Brastlewark[]): any => {
@@ -66,8 +51,7 @@ export const getFilterData = (globalData: Brastlewark[]): FilterData => {
   }};
 };
 
-export const getListDataFromFilter = ({value}: Actions) => {
-  const {filterData, globalData} = value;
+export const getListDataFromFilter = (filterData: any, globalData: Brastlewark[]) => {
   const { name, hair_color, professions, ranges } = filterData;
   const {
     age,

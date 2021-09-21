@@ -20,6 +20,7 @@ const PersonsList: FC<ListProps> = () => {
   const classes = styles();
   const dispatch = useDispatch();
   const globalData = useSelector((state: State) => state.home.globalData);
+  const isFiltered: boolean | undefined = useSelector((state: State) => state.filter.isFiltered);
   const [expandedPanel, setExpandedPanel] = useState<string | boolean>(false);
   const [listData, setListData] = useState<Brastlewark[]>([]);
   let listIndex: number = 20;
@@ -27,7 +28,7 @@ const PersonsList: FC<ListProps> = () => {
   useEffect(() => {
     setListData(globalData.slice(0, listIndex))
     const filterInfo: FilterData = getFilterData(globalData);
-    dispatch(setFilterData(filterInfo));
+    !isFiltered && dispatch(setFilterData(filterInfo));
   }, [globalData])
 
   useFetchGetGlobalDataQuery({onSuccess: (response) => {

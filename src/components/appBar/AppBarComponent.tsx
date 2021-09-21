@@ -11,21 +11,19 @@ import styles from './styles';
 import locale from '../../shared/locale';
 import logo from '../../shared/images/logo.png';
 import { useDispatch, useSelector } from 'react-redux';
-import {State, SelectedFilterData} from '../../interfaces/appInterfaces';
-import { getListDataFromFilter, removeClearFilters } from '../../actions/filterActions';
+import {State} from '../../interfaces/appInterfaces';
+import { removeClearFilters } from '../../actions/filterActions';
 import { Button } from '@material-ui/core';
-import { PersonEnum } from '../../shared/enums';
-import {useFetchGetPersonByNameMutation} from "../../services/app.query";
+import {useFetchGetAllListMutation, useFetchGetPersonByNameMutation} from "../../services/app.query";
 
 const AppBarComponent: FC<any> = ({children}) => {
   const dispatch = useDispatch();
-  const filterData = useSelector((state: State) => state.filter.filterData);
-  const globalData = useSelector((state: State) => state.home.globalData);
   const isFiltered = useSelector((state: State) => state.filter.isFiltered);
   const classes = styles();
   const [isOpen, setIsOpen] = useState(false);
 
   const {mutateAsync} = useFetchGetPersonByNameMutation();
+  const {mutateAsync: getAllData} = useFetchGetAllListMutation();
 
   const toggleDrawer = (anchor: any, open: boolean) => () => {
     setIsOpen(open);
@@ -36,18 +34,8 @@ const AppBarComponent: FC<any> = ({children}) => {
   }
 
   const onClickClearFilter = () => {
-    const resetSlidersData = {
-      [PersonEnum.AGE]: [filterData?.ranges.ageMinValue || 0, filterData?.ranges.ageMaxValue || 100],
-      [PersonEnum.WEIGHT]: [filterData?.ranges.weightMinValue || 0, filterData?.ranges.weightMaxValue || 100],
-      [PersonEnum.HEIGHT]: [filterData?.ranges.heightMinValue || 0, filterData?.ranges.heightMaxValue || 100]
-    }
-    dispatch(getListDataFromFilter({
-      [PersonEnum.NAME]: '',
-      [PersonEnum.HAIR_COLOR]: [],
-      [PersonEnum.PROFESSION]: [],
-      ranges: resetSlidersData
-    } as SelectedFilterData, globalData));
     dispatch(removeClearFilters());
+    getAllData();
   }
 
   return (

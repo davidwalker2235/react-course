@@ -4,10 +4,6 @@ const styles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
-  title: {
-    flexGrow: 1,
-    display: 'none',
-  },
   nameImput: {
     width: '100%'
   },
@@ -18,24 +14,6 @@ const styles = makeStyles((theme) => ({
   list: {
     width: 400,
     overflowX: 'hidden'
-  },
-    fullList: {
-    width: 'auto',
-  },
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '20ch',
-      '&:focus': {
-        width: '40ch',
-      },
-    },
   },
   filterButton: {
     color: 'white',

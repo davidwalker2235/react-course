@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc7f0d71-41c6-4b07-b03c-dd06ab6a35b5" name="Changes" comment="add react query">
+    <list default="true" id="bc7f0d71-41c6-4b07-b03c-dd06ab6a35b5" name="Changes" comment="finish">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/actions/filterActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/filterActions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/homeActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/homeActions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/listActions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/personActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/personActions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/appBar/AppBarComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/appBar/AppBarComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/expansionPanelComponent/ExpansionPanelComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/expansionPanelComponent/ExpansionPanelComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/expansionPanelComponent/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/expansionPanelComponent/styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/filterComponent/FilterComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filterComponent/FilterComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/personInfo/PersonInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/personInfo/PersonInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/filterComponent/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filterComponent/styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/constants/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/constants.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/reducers/filterReducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/filterReducers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sagas/filterSagas.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sagas/homeSagas.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sagas/listSagas.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sagas/personSagas.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sagas/rootSagas.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/personsList/PersonsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/personsList/PersonsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/personsList/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/personsList/styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/app.query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/app.query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/queries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/queries.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +77,8 @@
       <updated>1631783474221</updated>
       <workItem from="1631783477013" duration="6437000" />
       <workItem from="1631858445693" duration="16696000" />
-      <workItem from="1632130211763" duration="8021000" />
+      <workItem from="1632130211763" duration="8105000" />
+      <workItem from="1632206396677" duration="7150000" />
     </task>
     <task id="LOCAL-00001" summary="add react query">
       <created>1631885986579</created>
@@ -72,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631885986579</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix person data refresh">
+      <created>1632149323888</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1632149323888</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,6 +114,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add react query" />
-    <option name="LAST_COMMIT_MESSAGE" value="add react query" />
+    <MESSAGE value="fix person data refresh" />
+    <MESSAGE value="finish" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish" />
   </component>
 </project>
