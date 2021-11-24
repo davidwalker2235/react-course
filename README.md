@@ -10,11 +10,11 @@ List frontend application for the visualization of characters of Brastlewark cit
 
 * Install dependencies:
 
-### `yarn install`
+### `npm install`
 
 * Start the project:
 
-### `yarn start`
+### `npm start`
 
 * The app will be oppened in your default browser with localhost:3000
 
@@ -24,7 +24,6 @@ List frontend application for the visualization of characters of Brastlewark cit
 * React (https://es.reactjs.org/)
 * Typescript (https://www.typescriptlang.org/)
 * Redux (https://redux.js.org/)
-* Redux Saga (https://redux-saga.js.org/)
 * Axios (https://www.npmjs.com/package/axios)
 * React router (https://www.npmjs.com/package/react-router)
 * Material UI (https://material-ui.com/)

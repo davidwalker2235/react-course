@@ -4,7 +4,7 @@ import {QueryClientProvider} from 'react-query';
 import { Provider } from 'react-redux';
 import RootNavigator from './router/rootRouter';
 import configureStore, { history } from './store/store';
-import {Loading, Modal} from './components';
+import {Loading, Modal, SnackbarComponent} from './components';
 import {queryClient} from './react-query.config';
 
 const App: FC<{}> = () => {
@@ -12,6 +12,7 @@ const App: FC<{}> = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
+        <SnackbarComponent />
         <Modal />
         <Loading />
         <RootNavigator history={history}/>

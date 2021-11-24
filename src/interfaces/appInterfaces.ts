@@ -50,6 +50,7 @@ export interface State {
   list: ListProps;
   person: PersonProps;
   filter: FilterState;
+  snackBar: SnackBarState;
   router: RouterState;
 }
 
@@ -65,6 +66,12 @@ export interface LoadingState {
 export interface ModalState {
   isOpen: boolean;
   children: ReactNode;
+}
+
+// Snack Bar
+export interface SnackBarState {
+  isOpen: boolean;
+  text: string
 }
 
 // Home

@@ -7,6 +7,7 @@ import listReducer from './listReducer';
 import personReducer from './personReducer';
 import modalReducer from './modalReducer';
 import filterReducer from './filterReducers';
+import snackBarReducer from "./snackBarReducer";
 
 const rootReducer = (history: History) => combineReducers({
   home: homeReduder,
@@ -15,6 +16,7 @@ const rootReducer = (history: History) => combineReducers({
   person: personReducer,
   modal: modalReducer,
   filter: filterReducer,
+  snackBar: snackBarReducer,
   router: connectRouter(history)
 })
 

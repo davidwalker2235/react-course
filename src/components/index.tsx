@@ -4,6 +4,7 @@ import FilterComponent from './filterComponent/FilterComponent';
 import ExpansionPanelComponent from './expansionPanelComponent/ExpansionPanelComponent';
 import PersonInfo from './personInfo/PersonInfo';
 import Modal from './modal/Modal';
+import SnackbarComponent from './snackBar/snackBar';
 
 export {
     Loading,
@@ -11,5 +12,6 @@ export {
     FilterComponent,
     ExpansionPanelComponent,
     PersonInfo,
-    Modal
+    Modal,
+    SnackbarComponent
 }
