@@ -27,12 +27,12 @@ const PersonInfo: FC<PersonInfoProps> = ({panelId}) => {
     }});
 
   useEffect(() => {
-    mutateAsync(panelId);
-  },[]);
+    (async () => await mutateAsync(panelId))();
+  }, [panelId, mutateAsync])
 
   const getProfessions = (data: Brastlewark) => (
-    data?.professions?.length ? data.professions?.map((profession: string) => (
-      <Typography variant="subtitle1" color="textSecondary">
+    data?.professions?.length ? data.professions?.map((profession: string, index) => (
+      <Typography key={`${profession}-${index}`} variant="subtitle1" color="textSecondary">
         {profession}
       </Typography>
     )) :

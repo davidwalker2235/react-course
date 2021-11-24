@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Drawer from '@material-ui/core/Drawer';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -24,12 +24,18 @@ const AppBarComponent: FC<any> = ({children}) => {
 
   const {mutateAsync} = useFetchGetPersonByNameMutation();
   const {mutateAsync: getAllData} = useFetchGetAllListMutation();
+  const name = useRef('')
+
+  useEffect(() => {
+    !isFiltered && (name.current = '')
+  }, [isFiltered])
 
   const toggleDrawer = (anchor: any, open: boolean) => () => {
     setIsOpen(open);
   };
 
   const onChange = (data: any) => {
+    name.current = data.target.value
     mutateAsync(data.target.value);
   }
 
@@ -67,6 +73,7 @@ const AppBarComponent: FC<any> = ({children}) => {
             <InputBase
               placeholder={locale.SearchByPersonsName}
               onChange={onChange}
+              value={name.current}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,

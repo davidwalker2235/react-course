@@ -1,10 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import styles from './styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
+import {Accordion, AccordionDetails, AccordionSummary, Avatar, Typography} from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { ListRows } from '../../interfaces/appInterfaces';
 import {PersonInfo} from '../';
@@ -18,15 +14,15 @@ const ExpansionPanelComponent: FC<ListRows> = ({data,
 
   useEffect(() => {
     setPanelNumber(`panel${panelId}`);
-  },[]);
+  },[panelId]);
 
   const onChange = (panelId: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean) => {
     handleChange(data.id, newExpanded ? panelId : false)
   };
 
   return (
-  <ExpansionPanel expanded={panelExpanded === panelNumber} onChange={onChange(`panel${panelId}`)}>
-    <ExpansionPanelSummary
+  <Accordion expanded={panelExpanded === panelNumber} onChange={onChange(`panel${panelId}`)}>
+    <AccordionSummary
       expandIcon={<ExpandMoreIcon />}
       aria-controls={`panel${panelId}bh-content`}
       id={`panel${panelId}bh-header`}
@@ -35,11 +31,11 @@ const ExpansionPanelComponent: FC<ListRows> = ({data,
         {panelExpanded !== panelNumber && <Avatar alt={`panel-${data.name}-avatar`} src={data.thumbnail} />}
         <Typography className={classes.heading}>{data?.name}</Typography>
       </div>
-    </ExpansionPanelSummary>
-    <ExpansionPanelDetails className={classes.detailsRoot}>
+    </AccordionSummary>
+    <AccordionDetails className={classes.detailsRoot}>
       {panelExpanded === panelNumber && <PersonInfo panelId={data.id} />}
-    </ExpansionPanelDetails>
-  </ExpansionPanel>
+    </AccordionDetails>
+  </Accordion>
 );
 }
 
