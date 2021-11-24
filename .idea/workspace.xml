@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc7f0d71-41c6-4b07-b03c-dd06ab6a35b5" name="Changes" comment="finish">
-      <change afterPath="$PROJECT_DIR$/src/actions/snackBarActions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/snackBar/snackBar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/snackBarReducer.ts" afterDir="false" />
+    <list default="true" id="bc7f0d71-41c6-4b07-b03c-dd06ab6a35b5" name="Changes" comment="finish bug fixing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/filterActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/filterActions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/appInterfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/appInterfaces.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +34,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/actions" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -96,6 +84,8 @@
       <workItem from="1637318128391" duration="610000" />
       <workItem from="1637653649449" duration="13000" />
       <workItem from="1637738303545" duration="4598000" />
+      <workItem from="1637764205165" duration="414000" />
+      <workItem from="1637764827980" duration="1351000" />
     </task>
     <task id="LOCAL-00001" summary="add react query">
       <created>1631885986579</created>
@@ -118,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632216603678</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="finish bug fixing">
+      <created>1637764029961</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1637764029961</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,6 +137,7 @@
     <MESSAGE value="add react query" />
     <MESSAGE value="fix person data refresh" />
     <MESSAGE value="finish" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish" />
+    <MESSAGE value="finish bug fixing" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish bug fixing" />
   </component>
 </project>
